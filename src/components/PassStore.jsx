@@ -4,12 +4,24 @@ import { FaPen } from "react-icons/fa";
 import { MdOutlineDeleteForever } from "react-icons/md";
 const PassStore = () => {
   const [collection, setCollection] = useState([]);
-
+    
   useEffect(() => {
     axios.get("http://localhost:5000/password").then((res) => {
       setCollection(res.data);
     });
   }, [collection]);
+
+
+  // edit 
+
+   const handleEdit = id =>{
+
+          
+          
+
+
+
+   }
 
   return (
     <div className="mb-10">
@@ -40,7 +52,7 @@ const PassStore = () => {
                   {"*".repeat(data.password.length)}
                 </td>
                 <td className="flex items-center gap-3">
-                  <a href="" className="">
+                  <a onClick={()=>handleEdit(data.id)} href="" className="">
                     <FaPen className="text-xl text-primary-color" />{" "}
                   </a>
                   <a href="" className="">

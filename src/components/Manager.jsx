@@ -47,6 +47,8 @@ const Manager = () => {
                 }
 
              })
+
+             form.reset()
                 
            }
 
