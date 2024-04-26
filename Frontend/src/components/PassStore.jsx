@@ -34,7 +34,7 @@ const PassStore = () => {
                 <th className="text-white">{idx}</th>
                 <td className="text-white">{data.website}</td>
                 <td className="text-white">{data.username}</td>
-                <td className="text-white">{data.password}</td>
+                <td className="text-white">{"*".repeat(data.password.length)}</td>
               </tr>
             ))}
 
