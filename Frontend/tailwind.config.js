@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
        textColor :{
-         "primary-color": "#2cae74",
+         "primary-color": "#0ecb34",
          "second-color" : "#1d7edd"
        }
     },
