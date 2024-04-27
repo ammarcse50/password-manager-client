@@ -1,12 +1,17 @@
 import React, { useContext } from 'react';
 import { AuthContext } from './AuthProvider';
 import Swal from 'sweetalert2';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
            const {signInUser,signUpUser} = useContext(AuthContext)
             
+           const navigate = useNavigate();
+
+        const location = useLocation();
+
+        console.log('location in',location)
 
           const handleLogin =(e)=>{
 
@@ -21,6 +26,8 @@ const Login = () => {
            
               signInUser(email,password)
               .then(res=>{
+                // navigate after login
+                navigate(location?.state? location.state : "/")
                    const user = res.user;
                    console.log(user)
 

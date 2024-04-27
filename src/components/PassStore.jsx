@@ -11,7 +11,14 @@ import {
 } from "react-scroll";
 
 import { MdOutlineDeleteForever } from "react-icons/md";
+import { useLocation } from "react-router-dom";
 const PassStore = ({ handleUpdate }) => {
+     
+   const location = useLocation();
+
+    console.log(location)
+
+
   const [collection, setCollection] = useState([]);
 
   useEffect(() => {
