@@ -10,6 +10,8 @@ import Manager from "./components/Manager.jsx";
 import AuthProvider from "./components/AuthProvider.jsx";
 import Register from "./components/Register.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
+import PassStore from "./components/PassStore.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,17 +19,17 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: (
-          <PrivateRoute>
-            {" "}
-            <Manager></Manager>
-          </PrivateRoute>
-        ),
+        element: <Manager></Manager> 
+      },
+      {
+        path: "/passstore",
+        element: <PrivateRoute><PassStore></PassStore> </PrivateRoute> 
       },
       {
         path: "/login",
         element: <Login></Login>,
       },
+ 
       {
         path: "/register",
         element: <Register></Register>,

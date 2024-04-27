@@ -77,7 +77,7 @@ const PassStore = ({ handleUpdate }) => {
                     onClick={() => handleDelete(data._id)}
                     className=""
                   >
-                    <MdOutlineDeleteForever className="text-3xl text-primary-color" />{" "}
+                    <MdOutlineDeleteForever className="text-3xl text-rose-500" />{" "}
                   </a>
                 </td>
               </tr>

@@ -33,7 +33,7 @@ const Manager = () => {
 
           console.log('id',id)
 
-          
+
 
 
 
@@ -153,8 +153,8 @@ const Manager = () => {
           </div>
         </form>
       </div>
-      <PassStore></PassStore>
-    
+     
+     
     </div>
   );
 };

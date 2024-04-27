@@ -45,12 +45,17 @@ const Navbar = () => {
           >
             Home
           </Link>
-          <a
+          <Link
+          to="/passstore"
             href=""
             className="hover:text-second-color font-semibold md:text-xl"
           >
-            About
-          </a>
+            <button className="flex justify-center  items-center mb-6 ">
+            V<RiLockPasswordFill className="text-primary-color" />
+             ult
+            
+          </button>
+          </Link>
           {user ? (
             <Link
               onClick={handleLogOut}

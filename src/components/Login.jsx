@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Login = () => {
 
            const {signInUser,signUpUser} = useContext(AuthContext)
-
+            
 
           const handleLogin =(e)=>{
 
@@ -59,7 +59,7 @@ const Login = () => {
           </label>
         </div>
         <div className="form-control mt-6">
-          <button className="btn btn-primary">Login</button>
+          <button to="/" className="btn btn-primary">Login</button>
         </div>
         <div className="mt-6 flex justify-center">
           <button className="">Already Login Done? <Link to="/register" className='text-primary-color'>Register</Link></button>
