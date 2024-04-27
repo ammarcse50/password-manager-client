@@ -71,12 +71,12 @@ const Navbar = () => {
               Login
             </Link>
           )}
-          <a
-            href=""
+          <Link
+            to="/about"
             className="hover:text-second-color font-semibold md:text-xl"
           >
-            Contact
-          </a>
+           About
+          </Link>
         </div>
       </div>
       <ToastContainer />

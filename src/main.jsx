@@ -12,6 +12,7 @@ import Register from "./components/Register.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import PassStore from "./components/PassStore.jsx";
 import UpdatePass from "./components/UpdatePass.jsx";
+import About from "./components/About.jsx";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/about",
+        element: <About></About>,
       },
       
       {

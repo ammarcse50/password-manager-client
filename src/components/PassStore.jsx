@@ -1,36 +1,18 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { FaPen } from "react-icons/fa";
-import {
-  Link,
-  Button,
-  Element,
-  Events,
-  animateScroll as scroll,
-  scrollSpy,
-} from "react-scroll";
 
 import { MdOutlineDeleteForever } from "react-icons/md";
-import { Navigate, useLoaderData, useLocation } from "react-router-dom";
+import {  Link, useLocation } from "react-router-dom";
 const PassStore = () => {
   const location = useLocation();
 
-  
-
   const [collection, setCollection] = useState([]);
-       
-  const loadPass = useLoaderData();
-
-  const {_id}= loadPass
         
-    const handleUpdate =(id)=>{
+          
 
-         console.log(id)
-           
-         return <Navigate to={`/update/${id}`}></Navigate>
-    }
 
-   // fetch all data
+  // fetch all data
   useEffect(() => {
     axios.get("http://localhost:5000/password").then((res) => {
       setCollection(res.data);
@@ -79,7 +61,6 @@ const PassStore = () => {
                   <Link
                     activeClass="active"
                     to={`/update/${data._id}`}
-                   
                     spy={true}
                     smooth={true}
                     offset={50}
@@ -88,11 +69,7 @@ const PassStore = () => {
                   >
                     <FaPen className="text-xl text-primary-color" />{" "}
                   </Link>
-                  <a
-                    href=""
-                    onClick={() => handleDelete(data._id)}
-                    className=""
-                  >
+                  <a onClick={() => handleDelete(data._id)} className="">
                     <MdOutlineDeleteForever className="text-3xl text-rose-500" />{" "}
                   </a>
                 </td>
