@@ -1,27 +1,34 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { FaPen } from "react-icons/fa";
+import {
+  Link,
+  Button,
+  Element,
+  Events,
+  animateScroll as scroll,
+  scrollSpy,
+} from "react-scroll";
+
 import { MdOutlineDeleteForever } from "react-icons/md";
-const PassStore = () => {
+const PassStore = ({ handleUpdate }) => {
   const [collection, setCollection] = useState([]);
-    
+
   useEffect(() => {
     axios.get("http://localhost:5000/password").then((res) => {
       setCollection(res.data);
     });
   }, [collection]);
 
+  // edit
+  const handleDelete = (id) => {
+    axios.delete(`http://localhost:5000/password/${id}`).then((res) => {
+      console.log(res.data)
+    });
+    const filter = collection.filter((data) => data._id !== id);
 
-  // edit 
-
-   const handleEdit = id =>{
-
-          
-          
-
-
-
-   }
+    setCollection(filter);
+  };
 
   return (
     <div className="mb-10">
@@ -44,18 +51,32 @@ const PassStore = () => {
 
           <tbody className="text-lg">
             {collection.map((data, idx) => (
-              <tr key={data.id} className="bg-base-400">
-                <th className="text-white">{idx+1}</th>
-                <td className="text-white">{data.website}</td>
+              <tr key={data._id} className="bg-base-400">
+                <th className="text-white">{idx + 1}</th>
+                <td className="text-white">{data.site}</td>
                 <td className="text-white">{data.username}</td>
                 <td className="text-white">
                   {"*".repeat(data.password.length)}
                 </td>
                 <td className="flex items-center gap-3">
-                  <a onClick={()=>handleEdit(data.id)} href="" className="">
+                  <Link
+                    activeClass="active"
+                    to="manager"
+                    spy={true}
+                    smooth={true}
+                    offset={50}
+                    duration={500}
+                    href="/manage"
+                    onClick={() => handleUpdate(data._id)}
+                    className=""
+                  >
                     <FaPen className="text-xl text-primary-color" />{" "}
-                  </a>
-                  <a href="" className="">
+                  </Link>
+                  <a
+                    href=""
+                    onClick={() => handleDelete(data._id)}
+                    className=""
+                  >
                     <MdOutlineDeleteForever className="text-3xl text-primary-color" />{" "}
                   </a>
                 </td>

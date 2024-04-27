@@ -1,59 +1,56 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash, FaStarOfLife } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { TypeAnimation } from "react-type-animation";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 const Manager = () => {
+  const [form, setForm] = useState({ site:"", username: "", password: "" });
+  const [passwordArray, setPasswordArray] = useState([]);
+  const [isVisible, setIsVisible] = useState(false);
 
-        const [passfield,setPassfield] = useState([]);
-        const [isVisible, setIsVisible] = useState(false);
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
 
-                
+  useEffect(() => {
+    axios.get(`http://localhost:5000/password`).then((res) => {
+      setPasswordArray(res.data);
+    });
+  }, []);
 
-        const toggleVisibility = () => {
-          setIsVisible(!isVisible);
-        };
+  const handleChnage = (e) => {
+    e.preventDefault();
 
-           const handlePasswordSubmit =e=>{
-            e.preventDefault();
-               
-            console.log('clicked ok')
+    setForm({ ...form, [e.target.name]: e.target.value });
 
-            const form = e.target;
+      console.log(form)
+  };
 
-            const website = form.website.value;
-            const username = form.username.value;
-            const password = form.password.value;
+  const handlePasswordSubmit = (e) => {
+    e.preventDefault();
+    
+ 
 
-            const data = {website,username,password}
-            console.log(data)
-
-            axios.post('http://localhost:5000/password',data)
-             .then(res=>{
-
-                const data = res.data;
-                setPassfield(data)
-                 console.log(data)
-                if(data.insertedId)
-                {
-                   
-                  Swal.fire({
-                    title: "Good job!",
-                    text: "Your Password Saved!",
-                    icon: "success"
-                  });
-                }
-
-             })
-
-             form.reset()
-                
-           }
+    axios.post("http://localhost:5000/password", form).then((res) => {
+      const data = res.data;
+     
+      console.log(data);
+      if (data.insertedId) {
+        Swal.fire({
+          title: "Good job!",
+          text: "Your Password Saved!",
+          icon: "success",
+        });
+      }
+    });
+  setForm({site:" ",username:" ",password: " "})
+     
+  };
 
   return (
-    <div className="root ">
+    <div className="root " name="manager">
       <div className="flex justify-center lg:flex-none">
         {" "}
         <button className="flex justify-center  items-center mb-6 text-5xl">
@@ -90,7 +87,9 @@ const Manager = () => {
             </label>
             <input
               type="text"
-              name="website"
+              value={form.site}
+              onChange={handleChnage}
+              name="site"
               placeholder="Enter Website URL"
               className="input input-bordered outline outline-1 hover:outline-[#0ecb34]"
               required
@@ -104,6 +103,8 @@ const Manager = () => {
               </label>
               <input
                 type="text"
+                value={form.username}
+                onChange={handleChnage}
                 name="username"
                 placeholder="Enter Username"
                 className="input input-bordered outline outline-1 hover:outline-[#0ecb34]"
@@ -112,17 +113,27 @@ const Manager = () => {
             </div>
             <div className="form-control w-1/2">
               <label className="label">
-                <span className="label-text text-white flex items-center">Password <a onClick={toggleVisibility} className="ml-3" name="eye">{isVisible ? <FaEyeSlash className="text-xl"/> : <FaEye className="text-xl"/>}</a></span>
+                <span className="label-text text-white flex items-center">
+                  Password{" "}
+                  <a onClick={toggleVisibility} className="ml-3" name="eye">
+                    {isVisible ? (
+                      <FaEyeSlash className="text-xl" />
+                    ) : (
+                      <FaEye className="text-xl" />
+                    )}
+                  </a>
+                </span>
               </label>
               <span></span>
               <input
-                type={isVisible? "text":"password"}
+                type={isVisible ? "text" : "password"}
                 name="password"
+                value={form.password}
+                onChange={handleChnage}
                 placeholder="Enter Password"
                 className="input input-bordered outline outline-1 hover:outline-[#0ecb34]"
                 required
               />
-           
             </div>
           </div>
 
