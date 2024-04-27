@@ -4,9 +4,10 @@ import { FaEye, FaEyeSlash, FaStarOfLife } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { TypeAnimation } from "react-type-animation";
 import Swal from "sweetalert2";
+import PassStore from "./PassStore";
 
 const Manager = () => {
-  const [form, setForm] = useState({ site:"", username: "", password: "" });
+  const [form, setForm] = useState({ site: "", username: "", password: "" });
   const [passwordArray, setPasswordArray] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -25,17 +26,15 @@ const Manager = () => {
 
     setForm({ ...form, [e.target.name]: e.target.value });
 
-      console.log(form)
+    console.log(form);
   };
 
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
-    
- 
 
     axios.post("http://localhost:5000/password", form).then((res) => {
       const data = res.data;
-     
+
       console.log(data);
       if (data.insertedId) {
         Swal.fire({
@@ -45,8 +44,7 @@ const Manager = () => {
         });
       }
     });
-  setForm({site:" ",username:" ",password: " "})
-     
+    setForm({ site: "", username: "", password: "" });
   };
 
   return (
@@ -144,6 +142,7 @@ const Manager = () => {
           </div>
         </form>
       </div>
+      <PassStore></PassStore>
     </div>
   );
 };

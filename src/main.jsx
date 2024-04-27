@@ -18,6 +18,11 @@ const router = createBrowserRouter([
       element : <Manager></Manager>
     },
     {
+      path: "/manager/:id",
+      element : <Manager></Manager>,
+       loader: ({params})=>fetch(`http://localhost:5000/password/${params.id}`)
+    },
+    {
       path: "/login",
       element : <Login></Login>
     },
