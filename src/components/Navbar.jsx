@@ -1,9 +1,25 @@
-import React from "react";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import React, { useContext, useEffect, useState } from "react";
 import { FaStarOfLife } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { Link, NavLink } from "react-router-dom";
+import app from "../firebase/firebase.config";
+import { AuthContext } from "./AuthProvider";
+import Swal from "sweetalert2";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+const auth = getAuth(app);
 const Navbar = () => {
+  const notify = () => toast("LogOut Successful!");
+  const { logOut, user } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => console.log("user logged out successfully"))
+      .catch((error) => console.error(error));
+  };
+
   return (
     <div className="font-semibold  py-5 shadow-xl mb-10">
       <div className="max-w-6xl mx-auto lg:flex  lg:justify-between items-center">
@@ -35,12 +51,21 @@ const Navbar = () => {
           >
             About
           </a>
-          <Link
-            to="/login"
-            className="hover:text-second-color font-semibold md:text-xl"
-          >
-            Login
-          </Link>
+          {user ? (
+            <Link
+              onClick={handleLogOut}
+              className="hover:text-second-color font-semibold md:text-xl"
+            > <span onClick={()=>notify()}> SignOut </span>
+             
+            </Link>
+          ) : (
+            <Link
+              to="/login"
+              className="hover:text-second-color font-semibold md:text-xl"
+            >
+              Login
+            </Link>
+          )}
           <a
             href=""
             className="hover:text-second-color font-semibold md:text-xl"
@@ -49,6 +74,7 @@ const Navbar = () => {
           </a>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
