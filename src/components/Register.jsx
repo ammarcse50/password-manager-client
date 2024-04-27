@@ -18,6 +18,7 @@ const Register = () => {
     const password = form.password.value;
 
     signUpUser(email, password).then((res) => {
+
       const user = res.user;
         console.log(user)
         sendEmailVerification(user)
@@ -29,6 +30,7 @@ const Register = () => {
        
         icon: "success",
       });
+      form.reset();
     }) .catch((error) => {
        console.log(error)
       });
