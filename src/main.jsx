@@ -11,6 +11,7 @@ import AuthProvider from "./components/AuthProvider.jsx";
 import Register from "./components/Register.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import PassStore from "./components/PassStore.jsx";
+import UpdatePass from "./components/UpdatePass.jsx";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
             <PassStore></PassStore>{" "}
           </PrivateRoute>
         ),
+        loader: ()=> fetch(`http://localhost:5000/password`)
       },
       {
         path: "/login",
@@ -37,6 +39,12 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      
+      {
+        path: "/update/:id",
+        element: <UpdatePass></UpdatePass>,
+        loader: ({params})=> fetch(`http://localhost:5000/password/${params.id}`)
       },
     ],
   },

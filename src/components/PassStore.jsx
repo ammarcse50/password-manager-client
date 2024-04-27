@@ -11,16 +11,26 @@ import {
 } from "react-scroll";
 
 import { MdOutlineDeleteForever } from "react-icons/md";
-import { useLocation } from "react-router-dom";
-const PassStore = ({ handleUpdate }) => {
-     
-   const location = useLocation();
+import { Navigate, useLoaderData, useLocation } from "react-router-dom";
+const PassStore = () => {
+  const location = useLocation();
 
-    console.log(location)
-
+  
 
   const [collection, setCollection] = useState([]);
+       
+  const loadPass = useLoaderData();
 
+  const {_id}= loadPass
+        
+    const handleUpdate =(id)=>{
+
+         console.log(id)
+           
+         return <Navigate to={`/update/${id}`}></Navigate>
+    }
+
+   // fetch all data
   useEffect(() => {
     axios.get("http://localhost:5000/password").then((res) => {
       setCollection(res.data);
@@ -30,7 +40,7 @@ const PassStore = ({ handleUpdate }) => {
   // edit
   const handleDelete = (id) => {
     axios.delete(`http://localhost:5000/password/${id}`).then((res) => {
-      console.log(res.data)
+      console.log(res.data);
     });
     const filter = collection.filter((data) => data._id !== id);
 
@@ -68,13 +78,12 @@ const PassStore = ({ handleUpdate }) => {
                 <td className="flex items-center gap-3">
                   <Link
                     activeClass="active"
-                    to="updateUser"
-                  spy={true}
+                    to={`/update/${data._id}`}
+                   
+                    spy={true}
                     smooth={true}
                     offset={50}
                     duration={500}
-                    href="/manage"
-                    onClick={() => handleUpdate(data._id)}
                     className=""
                   >
                     <FaPen className="text-xl text-primary-color" />{" "}

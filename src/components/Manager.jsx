@@ -33,11 +33,6 @@ const Manager = () => {
 
           console.log('id',id)
 
-
-
-
-
-
   }
 
   const handlePasswordSubmit = (e) => {
