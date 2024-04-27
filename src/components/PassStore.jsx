@@ -40,7 +40,7 @@ const PassStore = ({ handleUpdate }) => {
         <table className="table">
           {/* head */}
           <thead className="shadow-xl">
-            <tr className="text-lg">
+            <tr className="md:text-lg">
               <th></th>
               <th className="text-white">Website</th>
               <th className="text-white">Username</th>
@@ -49,7 +49,7 @@ const PassStore = ({ handleUpdate }) => {
             </tr>
           </thead>
 
-          <tbody className="text-lg">
+          <tbody className="md:text-lg">
             {collection.map((data, idx) => (
               <tr key={data._id} className="bg-base-400">
                 <th className="text-white">{idx + 1}</th>
@@ -62,7 +62,7 @@ const PassStore = ({ handleUpdate }) => {
                   <Link
                     activeClass="active"
                     to="updateUser"
-                    spy={true}
+                  spy={true}
                     smooth={true}
                     offset={50}
                     duration={500}

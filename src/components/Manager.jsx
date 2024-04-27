@@ -62,9 +62,8 @@ const Manager = () => {
     <div className="root " name="manager">
       <div className="flex justify-center lg:flex-none">
         {" "}
-        <button className="flex justify-center  items-center mb-6 text-5xl">
-          P<RiLockPasswordFill className="text-primary-color" />
-          ssword Manager
+        <button className="flex justify-center  items-center mb-6 md:text-5xl text-3xl font-bold ">
+          P<RiLockPasswordFill className="text-primary-color" />ssword Manager
         </button>
       </div>
       <div>

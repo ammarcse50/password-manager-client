@@ -60,7 +60,7 @@ const Navbar = () => {
             <Link
               onClick={handleLogOut}
               className="hover:text-second-color font-semibold md:text-xl"
-            > <span onClick={()=>notify()}> SignOut </span>
+            > <span onClick={()=>notify()}> Logout </span>
              
             </Link>
           ) : (
