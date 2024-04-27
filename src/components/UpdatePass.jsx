@@ -42,7 +42,7 @@ const UpdatePass = () => {
 
   return (
     <div>
-      <h2>update</h2>
+     
 
       <form onSubmit={handleUpdate} className="card-body">
         <div className="form-control">

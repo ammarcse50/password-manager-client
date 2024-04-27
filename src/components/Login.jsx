@@ -32,8 +32,8 @@ const Login = () => {
                    console.log(user)
 
                 Swal.fire({
-                    title: "Good job!",
-                    text: "Your are logged",
+                    title: "Your are logged!",
+                   
                     icon: "success",
                 })
             }).catch((error) => {

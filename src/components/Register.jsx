@@ -20,13 +20,13 @@ const Register = () => {
     signUpUser(email, password).then((res) => {
       const user = res.user;
         console.log(user)
-        sendEmailVerification(auth)
+        sendEmailVerification(user)
         .then(() => {
           console.log('check inbox')
         });
       Swal.fire({
-        title: "Good job!",
-        text: "Account Created",
+        title: "Account Created!",
+       
         icon: "success",
       });
     }) .catch((error) => {
