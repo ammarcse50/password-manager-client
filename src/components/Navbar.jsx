@@ -11,12 +11,17 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const auth = getAuth(app);
 const Navbar = () => {
-  const notify = () => toast("LogOut Successful!");
+ const notify = () => toast("LogOut Successful!");
+
   const { logOut, user } = useContext(AuthContext);
 
   const handleLogOut = () => {
     logOut()
-      .then(() => console.log("user logged out successfully"))
+      .then(() =>{
+
+       
+       console.log("user logged out successfully")}) 
+       
       .catch((error) => console.error(error));
   };
 
@@ -79,7 +84,7 @@ const Navbar = () => {
           </Link>
         </div>
       </div>
-      <ToastContainer />
+      <ToastContainer autoClose={1000} />
     </div>
   );
 };

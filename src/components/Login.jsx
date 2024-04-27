@@ -1,20 +1,45 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { AuthContext } from "./AuthProvider";
 import Swal from "sweetalert2";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import app from "../firebase/firebase.config";
 
 const Login = () => {
+     const auth = getAuth(app)
   const notify = () => toast("Login Success!");
-
-  const { signInUser, signUpUser } = useContext(AuthContext);
-
-  const navigate = useNavigate();
+ const navigate = useNavigate();
 
   const location = useLocation();
+console.log("location in", location);
+  const { signInUser, signUpUser } = useContext(AuthContext);
+ 
+   const emailRef = useRef(null)
+ 
+  // email reference
 
-  console.log("location in", location);
+    const handleForgetPassword =()=>{
+           const email= emailRef.current.value;
+
+           if(!email)
+           {
+            console.log('give email address')
+
+            return
+           }
+           else if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
+           {
+              console.log('write valid email')
+              return
+           }
+           sendPasswordResetEmail(auth, email)
+           .then(()=> alert('password reset email sent!'))
+           .catch(error=>console.log(error))
+
+        console.log('current values in the field email',emailRef.current.value)
+    }
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -49,6 +74,7 @@ const Login = () => {
           </label>
           <input
             type="email"
+            ref={emailRef}
             name="email"
             placeholder="Enter Your Email"
             className="input input-bordered"
@@ -67,7 +93,7 @@ const Login = () => {
             required
           />
           <label className="label">
-            <a href="#" className="label-text-alt link link-hover">
+            <a onClick={handleForgetPassword} href="#" className="label-text-alt link link-hover">
               Forgot password?
             </a>
           </label>
