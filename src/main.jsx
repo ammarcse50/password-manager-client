@@ -9,6 +9,7 @@ import Root from "./components/Root.jsx";
 import Manager from "./components/Manager.jsx";
 import AuthProvider from "./components/AuthProvider.jsx";
 import Register from "./components/Register.jsx";
+import PrivateRoute from "./components/PrivateRoute.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -16,7 +17,12 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Manager></Manager>,
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Manager></Manager>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
