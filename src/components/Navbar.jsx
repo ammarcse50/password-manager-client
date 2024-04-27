@@ -1,6 +1,7 @@
 import React from "react";
 import { FaStarOfLife } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -22,24 +23,24 @@ const Navbar = () => {
         </div>
 
         <div className="flex text-primary-color gap-10 justify-center lg:justify-normal ">
-          <a
-            href=""
+          <Link
+            to="/"
             className="hover:text-second-color font-semibold md:text-xl"
           >
             Home
-          </a>
+          </Link>
           <a
             href=""
             className="hover:text-second-color font-semibold md:text-xl"
           >
             About
           </a>
-          <a
-            href=""
+          <Link
+            to="/login"
             className="hover:text-second-color font-semibold md:text-xl"
           >
             Login
-          </a>
+          </Link>
           <a
             href=""
             className="hover:text-second-color font-semibold md:text-xl"

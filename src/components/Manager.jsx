@@ -27,7 +27,18 @@ const Manager = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
 
     console.log(form);
-  };
+  };   
+    
+  const handleUpdate = id =>{
+
+          console.log('id',id)
+
+          
+
+
+
+
+  }
 
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
@@ -143,6 +154,7 @@ const Manager = () => {
         </form>
       </div>
       <PassStore></PassStore>
+    
     </div>
   );
 };

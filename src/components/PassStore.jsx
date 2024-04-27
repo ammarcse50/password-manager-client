@@ -61,7 +61,7 @@ const PassStore = ({ handleUpdate }) => {
                 <td className="flex items-center gap-3">
                   <Link
                     activeClass="active"
-                    to="manager"
+                    to="updateUser"
                     spy={true}
                     smooth={true}
                     offset={50}
