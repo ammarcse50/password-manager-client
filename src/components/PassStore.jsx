@@ -39,7 +39,7 @@ const PassStore = ({ handleUpdate }) => {
 
   return (
     <div className="mb-10">
-      <h2 className="text-5xl font-bold text-center pt-32 mb-10 text-[#1d7edd]">
+      <h2 className="text-5xl font-bold text-center  mb-10 text-[#1d7edd]">
         {" "}
         Table Saved Password
       </h2>
