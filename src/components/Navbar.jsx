@@ -11,7 +11,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const auth = getAuth(app);
 const Navbar = () => {
+
  const notify = () => toast("LogOut Successful!");
+  
+   const [toast,setToast]= useState(false)
 
   const { logOut, user } = useContext(AuthContext);
 
@@ -19,8 +22,9 @@ const Navbar = () => {
     logOut()
       .then(() =>{
 
-       
-       console.log("user logged out successfully")}) 
+        setToast(true)
+
+        Swal.fire("LogOut Success!");}) 
        
       .catch((error) => console.error(error));
   };
@@ -65,7 +69,7 @@ const Navbar = () => {
             <Link
               onClick={handleLogOut}
               className="hover:text-second-color font-semibold md:text-xl"
-            > <span onClick={()=>notify()}> Logout </span>
+            > <span > Logout </span>
              
             </Link>
           ) : (

@@ -25,11 +25,7 @@ const Register = () => {
         .then(() => {
           console.log('check inbox')
         });
-      Swal.fire({
-        title: "Account Created!",
-       
-        icon: "success",
-      });
+        Swal.fire("Your Account Created !");
       form.reset();
     }) .catch((error) => {
        console.log(error)

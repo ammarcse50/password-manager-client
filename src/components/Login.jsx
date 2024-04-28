@@ -8,38 +8,35 @@ import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import app from "../firebase/firebase.config";
 
 const Login = () => {
-     const auth = getAuth(app)
-  const notify = () => toast("Login Success!");
- const navigate = useNavigate();
+  const auth = getAuth(app);
+
+  const navigate = useNavigate();
 
   const location = useLocation();
-console.log("location in", location);
-  const { signInUser, signUpUser } = useContext(AuthContext);
- 
-   const emailRef = useRef(null)
- 
+  console.log("location in", location);
+  const { signInUser} = useContext(AuthContext);
+
+  const emailRef = useRef(null);
+
   // email reference
 
-    const handleForgetPassword =()=>{
-           const email= emailRef.current.value;
+  const handleForgetPassword = () => {
+    const email = emailRef.current.value;
 
-           if(!email)
-           {
-            console.log('give email address')
+    if (!email) {
+      console.log("give email address");
 
-            return
-           }
-           else if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
-           {
-              console.log('write valid email')
-              return
-           }
-           sendPasswordResetEmail(auth, email)
-           .then(()=> alert('password reset email sent!'))
-           .catch(error=>console.log(error))
-
-        console.log('current values in the field email',emailRef.current.value)
+      return;
+    } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      console.log("write valid email");
+      return;
     }
+    sendPasswordResetEmail(auth, email)
+      .then(() => alert("password reset email sent!"))
+      .catch((error) => console.log(error));
+
+    console.log("current values in the field email", emailRef.current.value);
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -48,15 +45,15 @@ console.log("location in", location);
 
     const email = form.email.value;
     const password = form.password.value;
-    if(!email)
-    {
-     console.log('give email address')
+    if (!email) {
+      console.log("give email address");
 
-     return
+      return;
     }
 
     signInUser(email, password)
       .then((res) => {
+        Swal.fire("Login Success!");
         // navigate after login
         navigate(location?.state ? location.state : "/");
         const user = res.user;
@@ -64,7 +61,7 @@ console.log("location in", location);
         form.reset();
       })
       .catch((error) => {
-        alert('Incorrect Data')
+        alert("Incorrect Data");
         console.log(error);
       });
   };
@@ -100,7 +97,11 @@ console.log("location in", location);
             required
           />
           <label className="label">
-            <a onClick={handleForgetPassword} href="#" className="label-text-alt link link-hover">
+            <a
+              onClick={handleForgetPassword}
+              href="#"
+              className="label-text-alt link link-hover"
+            >
               Forgot password?
             </a>
           </label>
