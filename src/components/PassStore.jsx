@@ -1,20 +1,24 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { FaPen } from "react-icons/fa";
 
 import { MdOutlineDeleteForever } from "react-icons/md";
 import {  Link, useLocation } from "react-router-dom";
+import { AuthContext } from "./AuthProvider";
 const PassStore = () => {
   const location = useLocation();
 
   const [collection, setCollection] = useState([]);
         
-          
+    const {user} = useContext(AuthContext)
+    
+     const url = `http://localhost:5000/password?email=${user.email}&sort=1`
 
+      
 
   // fetch all data
   useEffect(() => {
-    axios.get("http://localhost:5000/password").then((res) => {
+    axios.get(url).then((res) => {
       setCollection(res.data);
     });
   }, [collection]);

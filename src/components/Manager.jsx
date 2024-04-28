@@ -1,13 +1,19 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaEye, FaEyeSlash, FaStarOfLife } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { TypeAnimation } from "react-type-animation";
 import Swal from "sweetalert2";
-import PassStore from "./PassStore";
+
+import { AuthContext } from "./AuthProvider";
 
 const Manager = () => {
-  const [form, setForm] = useState({ site: "", username: "", password: "" });
+   const context=useContext(AuthContext);
+         
+   const {user} =  context;
+  
+       
+  // const [form, setForm] = useState({ email:user?.email:"", site: "", username: "", password: "" });
   const [passwordArray, setPasswordArray] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -21,36 +27,39 @@ const Manager = () => {
     });
   }, []);
 
-  const handleChnage = (e) => {
-    e.preventDefault();
+  // const handleChnage = (e) => {
+  //   e.preventDefault();
 
-    setForm({ ...form, [e.target.name]: e.target.value });
+  //   setForm({ ...form, [e.target.name]: e.target.value });
 
-    console.log(form);
-  };   
+  //   console.log(form);
+  // };   
     
-  const handleUpdate = id =>{
+  // const handleUpdate = id =>{
 
-          console.log('id',id)
+  //         console.log('id',id)
 
-  }
+  // }
 
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
+         const form = e.target;
 
-    axios.post("http://localhost:5000/password", form).then((res) => {
+      const email = user?.email;
+       const site =  form.site.value;
+       const username =  form.username.value;
+       const password =  form.password.value;
+        const formdata ={email,site,username,password}
+
+    axios.post("http://localhost:5000/password", formdata).then((res) => {
       const data = res.data;
 
       console.log(data);
       if (data.insertedId) {
-        Swal.fire({
-          title: "Good job!",
-          text: "Your Password Saved!",
-          icon: "success",
-        });
+        Swal.fire("Password Saved!");
       }
     });
-    setForm({ site: "", username: "", password: "" });
+   form.reset()
   };
 
   return (
@@ -90,8 +99,7 @@ const Manager = () => {
             </label>
             <input
               type="text"
-              value={form.site}
-              onChange={handleChnage}
+             
               name="site"
               placeholder="Enter Website URL"
               className="input input-bordered outline outline-1 hover:outline-[#0ecb34]"
@@ -106,8 +114,7 @@ const Manager = () => {
               </label>
               <input
                 type="text"
-                value={form.username}
-                onChange={handleChnage}
+               
                 name="username"
                 placeholder="Enter Username"
                 className="input input-bordered outline outline-1 hover:outline-[#0ecb34]"
@@ -131,8 +138,7 @@ const Manager = () => {
               <input
                 type={isVisible ? "text" : "password"}
                 name="password"
-                value={form.password}
-                onChange={handleChnage}
+               
                 placeholder="Enter Password"
                 className="input input-bordered outline outline-1 hover:outline-[#0ecb34]"
                 required

@@ -48,6 +48,12 @@ console.log("location in", location);
 
     const email = form.email.value;
     const password = form.password.value;
+    if(!email)
+    {
+     console.log('give email address')
+
+     return
+    }
 
     signInUser(email, password)
       .then((res) => {
@@ -58,6 +64,7 @@ console.log("location in", location);
         form.reset();
       })
       .catch((error) => {
+        alert('Incorrect Data')
         console.log(error);
       });
   };
