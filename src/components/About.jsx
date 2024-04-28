@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const About = () => {
   return (
-    <div >
+    <div>
       <h2 className="text-5xl font-bold text-center  mb-10 text-[#1d7edd]">
         {" "}
         About
@@ -25,50 +25,66 @@ const About = () => {
         {" "}
         Contact
       </h2>
-         
-       <div className="">
 
-       <form className="card-body md:w-1/2 mx-auto mb-10">
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Name</span>
-          </label>
-          <input type="name" placeholder="Enter Name" className="input input-bordered" required />
-        </div>
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Email</span>
-          </label>
-          <input type="email" placeholder="Email" className="input input-bordered" required />
-        </div>
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Message</span>
-          </label>
-          <textarea type="text" placeholder="Enter Your Message" className="input input-bordered p-4  h-24 resize-none "></textarea>
-           
-        </div>
-        <div className="form-control mt-6">
-          <button className="btn bg-[#1d7edd] text-black text-xl hover:bg-[#0ecb34]">Login</button>
-        </div>
-      </form>
-
-       </div>
-
-
-
+      <div className="">
+        <form className="card-body md:w-1/2 mx-auto mb-10">
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Name</span>
+            </label>
+            <input
+              type="name"
+              placeholder="Enter Name"
+              className="input input-bordered"
+              required
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Email</span>
+            </label>
+            <input
+              type="email"
+              placeholder="Email"
+              className="input input-bordered"
+              required
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Message</span>
+            </label>
+            <textarea
+              type="text"
+              placeholder="Enter Your Message"
+              className="input input-bordered p-4  h-24 resize-none "
+            ></textarea>
+          </div>
+          <div className="form-control mt-6">
+            <button className="btn bg-[#1d7edd] text-black text-xl hover:bg-[#0ecb34]">
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
 
       <div className="flex gap-5 justify-center mb-10">
         {" "}
-       <Link to="https://api.whatsapp.com/send?phone=8801883128299"><span className="mt-auto">
-          <FaWhatsappSquare className="text-5xl text-second-color hover:text-primary-color" />
-        </span></Link> 
-       <Link to="https://www.linkedin.com/in/mohammad-ammar-96b551254/"><span className="mt-auto">
-          <FaLinkedin className="text-5xl text-second-color hover:text-primary-color" />
-        </span></Link> 
-        <Link to="https://www.facebook.com/profile.php?id=61551789883517"><span className="mt-auto">
-          <FaFacebook className="text-5xl text-second-color hover:text-primary-color" />
-        </span></Link>
+        <Link to="https://api.whatsapp.com/send?phone=8801883128299">
+          <span className="mt-auto">
+            <FaWhatsappSquare className="text-5xl text-second-color hover:text-primary-color" />
+          </span>
+        </Link>
+        <Link to="https://www.linkedin.com/in/mohammad-ammar-96b551254/">
+          <span className="mt-auto">
+            <FaLinkedin className="text-5xl text-second-color hover:text-primary-color" />
+          </span>
+        </Link>
+        <Link to="https://www.facebook.com/profile.php?id=61551789883517">
+          <span className="mt-auto">
+            <FaFacebook className="text-5xl text-second-color hover:text-primary-color" />
+          </span>
+        </Link>
       </div>
     </div>
   );
