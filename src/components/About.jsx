@@ -1,8 +1,43 @@
 import React from "react";
 import { FaFacebook, FaLinkedin, FaWhatsappSquare } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const About = () => {
+
+
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+  
+    const formData = new FormData(event.target);
+
+    formData.append("access_key", "57c02a7e-d5af-46e3-b802-49ad7db6f669");
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+       Swal.fire('Your message sent!')
+      event.target.reset();
+    } else {
+      console.log("Error", data);
+    
+    }
+  };
+
+
+
+
+
+
+
+
+
   return (
     <div>
       <h2 className="text-5xl font-bold text-center  mb-10 text-[#1d7edd]">
@@ -27,11 +62,12 @@ const About = () => {
       </h2>
 
       <div className="">
-        <form className="card-body md:w-1/2 mx-auto mb-10">
+        <form onSubmit={onSubmit} className="card-body md:w-1/2 mx-auto mb-10">
           <div className="form-control">
             <label className="label">
               <span className="label-text">Name</span>
             </label>
+            <input type="hidden" name="access_key" value="57c02a7e-d5af-46e3-b802-49ad7db6f669"/>
             <input
               type="name"
               placeholder="Enter Name"
