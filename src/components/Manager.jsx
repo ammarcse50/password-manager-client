@@ -6,12 +6,16 @@ import { TypeAnimation } from "react-type-animation";
 import Swal from "sweetalert2";
 
 import { AuthContext } from "./AuthProvider";
+import {  Navigate, useLocation, useNavigate } from "react-router-dom";
 
 const Manager = () => {
    const context=useContext(AuthContext);
-         
+         const location = useLocation();
+
    const {user} =  context;
-  
+    
+     const navigate =  useNavigate();
+
        
   // const [form, setForm] = useState({ email:user?.email:"", site: "", username: "", password: "" });
   const [passwordArray, setPasswordArray] = useState([]);
@@ -27,24 +31,20 @@ const Manager = () => {
     });
   }, []);
 
-  // const handleChnage = (e) => {
-  //   e.preventDefault();
-
-  //   setForm({ ...form, [e.target.name]: e.target.value });
-
-  //   console.log(form);
-  // };   
-    
-  // const handleUpdate = id =>{
-
-  //         console.log('id',id)
-
-  // }
-
+  
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
-         const form = e.target;
-
+     if(!user)
+     {
+        alert('Login your account!')
+         
+        navigate('/login')
+       
+       
+     }
+        
+     else{
+      const form = e.target;
       const email = user?.email;
        const site =  form.site.value;
        const username =  form.username.value;
@@ -60,6 +60,7 @@ const Manager = () => {
       }
     });
    form.reset()
+     }
   };
 
   return (

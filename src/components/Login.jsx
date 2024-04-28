@@ -1,20 +1,20 @@
-import React, { useContext, useRef, useState } from "react";
+import { useContext, useRef } from "react";
 import { AuthContext } from "./AuthProvider";
 import Swal from "sweetalert2";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import app from "../firebase/firebase.config";
 
-const Login = () => {
+export const Login = () => {
   const auth = getAuth(app);
 
   const navigate = useNavigate();
 
   const location = useLocation();
   console.log("location in", location);
-  const { signInUser} = useContext(AuthContext);
+  const { signInUser } = useContext(AuthContext);
 
   const emailRef = useRef(null);
 
@@ -55,6 +55,7 @@ const Login = () => {
       .then((res) => {
         Swal.fire("Login Success!");
         // navigate after login
+
         navigate(location?.state ? location.state : "/");
         const user = res.user;
         console.log(user);

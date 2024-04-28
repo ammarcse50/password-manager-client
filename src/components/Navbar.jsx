@@ -1,20 +1,19 @@
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import React, { useContext, useEffect, useState } from "react";
+
+import  { useContext } from "react";
 import { FaStarOfLife } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { Link, NavLink } from "react-router-dom";
-import app from "../firebase/firebase.config";
+import { Link } from "react-router-dom";
+
 import { AuthContext } from "./AuthProvider";
 import Swal from "sweetalert2";
 
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const auth = getAuth(app);
+
 const Navbar = () => {
 
- const notify = () => toast("LogOut Successful!");
-  
-   const [toast,setToast]= useState(false)
+ 
+   
 
   const { logOut, user } = useContext(AuthContext);
 
@@ -22,7 +21,7 @@ const Navbar = () => {
     logOut()
       .then(() =>{
 
-        setToast(true)
+     
 
         Swal.fire("LogOut Success!");}) 
        
