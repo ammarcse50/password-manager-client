@@ -12,7 +12,8 @@ const PassStore = () => {
         
     const {user} = useContext(AuthContext)
     
-     const url = `http://localhost:5000/password?email=${user.email}&sort=1`
+     const url = `https://mahadul-qiraat-server-production.up.railway.app/password?email=${user.email}&sort=1` // name mistake in github i done paas manager er jaigai mahadul qiraat diye repo crete kore felchi
+     
 
       
 
@@ -25,7 +26,7 @@ const PassStore = () => {
 
   // edit
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:5000/password/${id}`).then((res) => {
+    axios.delete(`https://mahadul-qiraat-server-production.up.railway.app/password/${id}`).then((res) => {
       console.log(res.data);
     });
     const filter = collection.filter((data) => data._id !== id);

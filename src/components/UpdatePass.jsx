@@ -26,7 +26,7 @@ const UpdatePass = () => {
 
     const pass = { site, username, password };
 
-    axios.put(`http://localhost:5000/password/${_id}`, pass).then((res) => {
+    axios.put(`https://mahadul-qiraat-server-production.up.railway.app/password/${_id}`, pass).then((res) => {
       const data = res.data;
       console.log(data);
       if (data.modifiedCount > 0) {

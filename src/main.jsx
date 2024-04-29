@@ -30,7 +30,7 @@ const router = createBrowserRouter([
             <PassStore></PassStore>{" "}
           </PrivateRoute>
         ),
-        loader: ()=> fetch(`http://localhost:5000/password`)
+        loader: ()=> fetch(`https://mahadul-qiraat-server-production.up.railway.app/password`)
       },
       {
         path: "/login",
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
       {
         path: "/update/:id",
         element: <UpdatePass></UpdatePass>,
-        loader: ({params})=> fetch(`http://localhost:5000/password/${params.id}`)
+        loader: ({params})=> fetch(`https://mahadul-qiraat-server-production.up.railway.app/password/${params.id}`)
       },
     ],
   },
