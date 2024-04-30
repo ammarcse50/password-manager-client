@@ -26,7 +26,7 @@ const Manager = () => {
   };
 
   useEffect(() => {
-    axios.get(`https://mahadul-qiraat-server-production.up.railway.app/password`).then((res) => {
+    axios.get(`https://password-manager-server-mine-production.up.railway.app/password`).then((res) => {
       setPasswordArray(res.data);
     });
   }, []);
@@ -51,7 +51,7 @@ const Manager = () => {
        const password =  form.password.value;
         const formdata ={email,site,username,password}
 
-    axios.post("https://mahadul-qiraat-server-production.up.railway.app/password", formdata).then((res) => {
+    axios.post("https://password-manager-server-mine-production.up.railway.app/password", formdata).then((res) => {
       const data = res.data;
 
       console.log(data);
