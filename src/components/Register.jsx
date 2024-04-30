@@ -1,13 +1,12 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "./AuthProvider";
 import { Link } from "react-router-dom";
-import { getAuth, sendEmailVerification } from "firebase/auth";
-import app from "../firebase/firebase.config";
+import {  sendEmailVerification } from "firebase/auth";
 
- const auth= getAuth(app)
+
 const Register = () => {
-  const { signInUser, signUpUser } = useContext(AuthContext);
+  const {  signUpUser } = useContext(AuthContext);
 
   const handleSignUp = (e) => {
     e.preventDefault();
